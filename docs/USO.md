@@ -1,47 +1,30 @@
 # Guia de uso
 
-DataType UUID para aplicacoes Elavora API.
-
-## Instalacao
-
-```bash
-composer require elavora/api-datatype-uuid
-```
-
-## Quando usar
-
-- Validar e normalizar valores antes de chegar na regra de negocio.
-- Evitar passar strings soltas entre services, DTOs e persistencia.
-- Reutilizar a mesma validacao em controllers, comandos e testes.
-
-## Exemplo rapido
+`Uuid` aceita UUID canonico v1 a v8 com variante RFC, alem dos valores especiais Nil e Max definidos pelo RFC 9562.
 
 ```php
 use Elavora\Api\DataTypes\Uuid;
 
-$valor = new Uuid('00000000-0000-4000-8000-000000000000');
-$normalizado = $valor->value();
+$uuid = Uuid::from('017F22E2-79B0-7CC3-98C4-DC0C0C07398F');
+
+echo $uuid->value(); // 017f22e2-79b0-7cc3-98c4-dc0c0c07398f
 ```
 
-## Principais pontos de entrada
+Use `Uuid::generate()` para criar um UUID v4 aleatorio. URNs, chaves, valores sem hifens e texto adicional nao sao aceitos.
 
-- `Elavora\Api\DataTypes\Uuid`
+Para verificar uma entrada sem criar uma instancia:
 
-## Dependencias de runtime
+```php
+if (Uuid::isValid($entrada)) {
+    $uuid = Uuid::from($entrada);
+}
+```
 
-- `elavora/api-datatype-core` `^0.1`
+## Validacao do pacote
 
-## Validacao no projeto consumidor
-
-Depois de instalar o pacote, rode os testes da aplicacao consumidora. Para uma verificacao isolada do pacote, use container:
+Execute os comandos a partir da raiz do clone:
 
 ```bash
-docker run --rm -v "${PWD}:/workspace" -w "/workspace/api-datatype-uuid" composer:2 composer validate --strict --no-check-publish
-docker run --rm -v "${PWD}:/workspace" -w "/workspace/api-datatype-uuid" composer:2 sh -lc "find . \\( -path ./.git -o -path ./vendor \\) -prune -o -name '*.php' -print0 | xargs -0 -r -n1 php -l"
+docker run --rm -v "${PWD}:/workspace" -w /workspace composer:2 composer update --no-interaction --no-progress --prefer-dist
+docker run --rm -v "${PWD}:/workspace" -w /workspace composer:2 composer check
 ```
-
-## Observacoes
-
-- Mantenha regras de produto fora deste pacote.
-- Prefira configurar extensoes no bootstrap da aplicacao.
-- Instale apenas os modulos que a aplicacao realmente usa.

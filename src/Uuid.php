@@ -6,6 +6,9 @@ namespace Elavora\Api\DataTypes;
 
 final readonly class Uuid extends AbstractDataType
 {
+    private const NIL = '00000000-0000-0000-0000-000000000000';
+    private const MAX = 'ffffffff-ffff-ffff-ffff-ffffffffffff';
+
     /**
      * Gera um UUID v4 valido.
      */
@@ -31,8 +34,19 @@ final readonly class Uuid extends AbstractDataType
      */
     public static function isValid(mixed $value): bool
     {
-        return is_string($value)
-            && preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i', $value) === 1;
+        if (!is_string($value)) {
+            return false;
+        }
+
+        $normalized = strtolower($value);
+        if ($normalized === self::NIL || $normalized === self::MAX) {
+            return true;
+        }
+
+        return preg_match(
+            '/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/',
+            $normalized
+        ) === 1;
     }
 
     protected static function normalize(mixed $value): string
