@@ -24,7 +24,7 @@ Guia de uso, com a API pública e exemplos: [docs/USO.md](docs/USO.md).
 composer require elavora/api-datatype-uuid
 ```
 
-Requisitos: PHP 8.1 ou superior e `elavora/api-datatype-core` `^0.1`.
+Requisitos: PHP 8.3 ou superior e `elavora/api-datatype-core` `^2.0` (que usa o `elavora/api-framework` `^2.0`).
 
 ## Desenvolvimento e testes
 
@@ -60,8 +60,12 @@ estão em [Desenvolvimento e testes](docs/DESENVOLVIMENTO.md).
 
 ## Versões
 
+Versão `1.0.0`: atualiza o pacote para o `elavora/api-datatype-core` `^2.0` e exige PHP 8.3 ou superior (antes: PHP 8.1 e
+core `^0.1`). A API pública de `FolderName` não muda, e o código em `src/` continua o mesmo. O core `^0.1` não funciona
+mais com o framework atual, por isso a restrição antiga deixa de ser aceita.
+
 Cada PR integrado na `main` gera uma versão automaticamente, conforme as labels do PR: sem a label `release` sai uma
-beta, com ela sai a estável. As tags novas não têm o prefixo `v`, e as notas de cada
+beta (`1.1.0-beta.1`), com ela sai a estável (`1.1.0`). As tags novas não têm o prefixo `v`, e as notas de cada
 GitHub Release são geradas em português a partir dos PRs. Veja [Versões e release](docs/AUTOMACAO.md#versões-e-release).
 
 ## Documentação
