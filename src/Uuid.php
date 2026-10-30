@@ -22,7 +22,7 @@ final readonly class Uuid extends AbstractDataType
             substr($hex, 8, 4),
             substr($hex, 12, 4),
             substr($hex, 16, 4),
-            substr($hex, 20)
+            substr($hex, 20),
         ));
     }
 
