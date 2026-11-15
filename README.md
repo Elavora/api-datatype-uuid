@@ -12,7 +12,7 @@ DataType UUID para aplicações Elavora API.
 use Elavora\Api\DataTypes\Uuid;
 
 $novo = Uuid::generate();
-$valor = Uuid::from('00000000-0000-4000-8000-000000000000');
+$valor = new Uuid('00000000-0000-4000-8000-000000000000');
 $normalizado = $valor->value();
 ```
 
@@ -24,7 +24,7 @@ Guia de uso, com a API pública e exemplos: [docs/USO.md](docs/USO.md).
 composer require elavora/api-datatype-uuid
 ```
 
-Requisitos: PHP 8.3 ou superior e `elavora/api-datatype-core` `^2.0` (que usa o `elavora/api-framework` `^2.0`).
+Requisitos: PHP 8.3 ou superior e `elavora/api-datatype-core` `^3.0` (que usa o `elavora/api-framework` `^3.0`).
 
 ## Desenvolvimento e testes
 

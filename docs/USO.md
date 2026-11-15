@@ -20,7 +20,7 @@ composer require elavora/api-datatype-uuid
 use Elavora\Api\DataTypes\Uuid;
 
 $novo = Uuid::generate();
-$valor = Uuid::from('00000000-0000-4000-8000-000000000000');
+$valor = new Uuid('00000000-0000-4000-8000-000000000000');
 $normalizado = $valor->value();
 ```
 
@@ -31,7 +31,7 @@ A classe `Elavora\Api\DataTypes\Uuid` e `final readonly` e estende `Elavora\Api\
 
 | Metodo | Retorno | O que faz |
 | --- | --- | --- |
-| `Uuid::from(mixed $value)` | `Uuid` | valida, normaliza e cria o objeto; lanca `InvalidArgumentException` se o valor for invalido |
+| `new Uuid(mixed $value)` | `Uuid` | valida, normaliza e cria o objeto; lanca `InvalidArgumentException` se o valor for invalido |
 | `Uuid::generate()` | `Uuid` | gera um UUID v4 aleatorio, ja em minusculas |
 | `Uuid::isValid(mixed $value)` | `bool` | diz se o valor e um UUID valido; nunca lanca excecao |
 | `value()` | `string` | o UUID normalizado |
@@ -73,7 +73,7 @@ resultado.
 ## Dependencias de runtime
 
 - PHP 8.3 ou superior
-- `elavora/api-datatype-core` `^2.0` (que exige o `elavora/api-framework` `^2.0`)
+- `elavora/api-datatype-core` `^3.0` (que exige o `elavora/api-framework` `^3.0`)
 
 ## Atualizacao da versao anterior
 

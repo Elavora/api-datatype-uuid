@@ -16,7 +16,7 @@ final readonly class Uuid extends AbstractDataType
         $bytes[8] = chr((ord($bytes[8]) & 0x3f) | 0x80);
         $hex = bin2hex($bytes);
 
-        return self::from(sprintf(
+        return new self(sprintf(
             '%s-%s-%s-%s-%s',
             substr($hex, 0, 8),
             substr($hex, 8, 4),

@@ -102,7 +102,7 @@ final class UuidTest extends TestCase
     #[DataProvider('validProvider')]
     public function testFromNormalizesToLowercase(string $input, string $expected): void
     {
-        self::assertSame($expected, Uuid::from($input)->value());
+        self::assertSame($expected, new Uuid($input)->value());
     }
 
     #[DataProvider('invalidProvider')]
@@ -117,17 +117,17 @@ final class UuidTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Valor invalido para Elavora\Api\DataTypes\Uuid.');
 
-        Uuid::from($input);
+        new Uuid($input);
     }
 
     public function testFromReturnsUuidInstance(): void
     {
-        self::assertInstanceOf(Uuid::class, Uuid::from('00000000-0000-4000-8000-000000000000'));
+        self::assertInstanceOf(Uuid::class, new Uuid('00000000-0000-4000-8000-000000000000'));
     }
 
     public function testJsonSerializeAndStringCastEqualValue(): void
     {
-        $uuid = Uuid::from('550E8400-E29B-41D4-A716-446655440000');
+        $uuid = new Uuid('550E8400-E29B-41D4-A716-446655440000');
 
         self::assertSame('550e8400-e29b-41d4-a716-446655440000', $uuid->jsonSerialize());
         self::assertSame('550e8400-e29b-41d4-a716-446655440000', (string) $uuid);
