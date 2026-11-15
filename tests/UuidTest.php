@@ -151,12 +151,12 @@ final class UuidTest extends TestCase
         self::assertNotSame(Uuid::generate()->value(), Uuid::generate()->value());
     }
 
-    public function testClassIsFinalReadonlyWithProtectedConstructor(): void
+    public function testClassIsFinalReadonlyWithPublicConstructor(): void
     {
         $class = new \ReflectionClass(Uuid::class);
 
         self::assertTrue($class->isFinal());
         self::assertTrue($class->isReadOnly());
-        self::assertFalse($class->getConstructor()?->isPublic() ?? false);
+        self::assertTrue($class->getConstructor()?->isPublic() ?? false);
     }
 }
