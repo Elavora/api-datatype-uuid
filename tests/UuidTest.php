@@ -102,7 +102,7 @@ final class UuidTest extends TestCase
     #[DataProvider('validProvider')]
     public function testFromNormalizesToLowercase(string $input, string $expected): void
     {
-        self::assertSame($expected, new Uuid($input)->value());
+        self::assertSame($expected, (new Uuid($input))->value());
     }
 
     #[DataProvider('invalidProvider')]
