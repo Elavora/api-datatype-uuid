@@ -72,8 +72,8 @@ resultado.
 
 ## Dependencias de runtime
 
-- PHP 8.3 ou superior
-- `elavora/api-datatype-core` `^3.0` (que exige o `elavora/api-framework` `^3.0`)
+- PHP 8.4 ou superior
+- `elavora/api-datatype-core` `^4.0` (que exige o `elavora/api-framework` `^4.0`)
 
 ## Atualizacao da versao anterior
 
