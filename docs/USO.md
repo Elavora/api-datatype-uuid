@@ -66,6 +66,19 @@ A mensagem da excecao e `Valor invalido para Elavora\Api\DataTypes\Uuid.`
 `Uuid::generate()` sempre devolve um UUID com versao `4` e variante `8`, `9`, `a` ou `b`, e `isValid()` aceita o
 resultado.
 
+## Documentacao do tipo (OPTIONS)
+
+`Uuid` implementa `Elavora\Api\Framework\Contracts\DescribesType`. O OPTIONS publico da API usa
+`documentedType()` para documentar o campo sem expor o nome da classe PHP. O tipo declara:
+
+- `type`: `string`
+- `format`: `uuid`
+- `pattern`: formato hexadecimal 8-4-4-4-12 (versao 1 a 5), portavel para PCRE e JavaScript
+- `description`: UUID versoes 1 a 5, normalizado para minusculas
+- `example`: `f47ac10b-58cc-4372-a567-0e02b2c3d479`
+
+Quem valida continua sendo `isValid()`.
+
 ## Principais pontos de entrada
 
 - `Elavora\Api\DataTypes\Uuid`

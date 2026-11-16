@@ -4,8 +4,26 @@ declare(strict_types=1);
 
 namespace Elavora\Api\DataTypes;
 
-final readonly class Uuid extends AbstractDataType
+use Elavora\Api\Framework\Contracts\DescribesType;
+
+final readonly class Uuid extends AbstractDataType implements DescribesType
 {
+    /**
+     * Descreve o tipo para a documentacao publica (OPTIONS).
+     *
+     * @return array<string, mixed>
+     */
+    public static function documentedType(): array
+    {
+        return [
+            'type' => 'string',
+            'format' => 'uuid',
+            'pattern' => '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$',
+            'description' => 'UUID nas versoes 1 a 5, em hexadecimal com hifens; o valor e normalizado para minusculas.',
+            'example' => 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
+        ];
+    }
+
     /**
      * Gera um UUID v4 valido.
      */
